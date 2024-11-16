@@ -1,5 +1,6 @@
 package org.example.steps;
 
+import io.cucumber.java.After;
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
@@ -51,7 +52,7 @@ public class LoginSteps {
         String actualTitle = dashboard.getDashboardTitle();
         MatcherAssert.assertThat("Dashboard title mismatch!", actualTitle, Matchers.containsString(expectedTitle));
     }
-    @AfterAll
+    @After
     public static void iCloseBrowser() {
         driver.quit();
     }

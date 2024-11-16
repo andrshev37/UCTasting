@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "org.example.steps",
         plugin = {"pretty", "html:target/cucumber-reports.html"}
+
 )
 public class RunCucumber {
 }

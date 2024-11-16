@@ -12,9 +12,9 @@ public class WebDriverSingleton {
     private WebDriverSingleton() {}
 
     public static WebDriver getDriver(String browser) {
-        if (driver == null) {
 
-            switch (browser.toLowerCase()) {
+
+            switch (browser) {
                 case "firefox":
                     driver = new FirefoxDriver();
                     break;
@@ -26,7 +26,7 @@ public class WebDriverSingleton {
                     throw new IllegalArgumentException("Unsupported browser: " + browser);
             }
             //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        }
+
         return driver;
     }
 }

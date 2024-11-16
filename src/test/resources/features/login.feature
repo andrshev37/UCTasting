@@ -1,9 +1,10 @@
 Feature: Login functionality
 
   Scenario: Login with empty username and password
-    Given I open login page "https://www.saucedemo.com/" in "edge" browser or firefox
+    Given I open login page "https://www.saucedemo.com/" in "firefox" browser or firefox
     When I login with username "" and password ""
     Then I see an error message "Username is required"
+
 
 
   Scenario: Login with empty password
@@ -15,3 +16,11 @@ Feature: Login functionality
     Given I open login page "https://www.saucedemo.com/" in "edge" browser or firefox
     When I login with username "performance_glitch_user" and password "secret_sauce"
     Then I see the dashboard title "Swag Labs"
+#Examples:
+  #|Accepted usernames are:|Password for all users:
+  #|standard_user          |secret_sauce
+  #|locked_out_user        |
+  #|problem_user           |
+  #|performance_glitch_user|
+  #|error_user             |
+  #|visual_user            |
