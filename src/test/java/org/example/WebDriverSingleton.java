@@ -4,29 +4,31 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import java.util.concurrent.TimeUnit;
-
 public class WebDriverSingleton {
-    private static WebDriver driver;
+    private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     private WebDriverSingleton() {}
 
     public static WebDriver getDriver(String browser) {
-
-
+        if (driver.get() == null) {
             switch (browser) {
                 case "firefox":
-                    driver = new FirefoxDriver();
+                    driver.set(new FirefoxDriver());
                     break;
                 case "edge":
-
-                    driver = new EdgeDriver();
+                    driver.set(new EdgeDriver());
                     break;
                 default:
                     throw new IllegalArgumentException("Unsupported browser: " + browser);
             }
-            //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        }
+        return driver.get();
+    }
 
-        return driver;
+    public static void quitDriver() {
+        if (driver.get() != null) {
+            driver.get().quit();
+            driver.remove();
+        }
     }
 }

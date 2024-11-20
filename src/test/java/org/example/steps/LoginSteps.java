@@ -15,12 +15,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class LoginSteps {
-    private static WebDriver driver;
+    private WebDriver driver;
     private Login login;
     private Dashboard dashboard;
     private Logger logger;
 
-    @Given("I open login page {string} in {string} browser or firefox")
+    @Given("I open login page {string} in {string} browser")
     public void iOpenPage(String page, String browser) {
         driver = WebDriverSingleton.getDriver(browser);
         login = new Login(driver);
@@ -53,7 +53,7 @@ public class LoginSteps {
         MatcherAssert.assertThat("Dashboard title mismatch!", actualTitle, Matchers.containsString(expectedTitle));
     }
     @After
-    public static void iCloseBrowser() {
-        driver.quit();
+    public void iCloseBrowser() {
+        WebDriverSingleton.quitDriver();
     }
 }
